@@ -1,62 +1,54 @@
-create a django project 
+#################
+      Setup guide:
+#######################
 
--- install python 3.8
+**To run this application python 3.8 or upper version required**
 
--- pip install django
--- if above not work then run
-   -sudo apt install python3-django
+1.clone repository from url by using command
+-  git clone git@github.com:gautamkumar200/salary-box.git
 
-check version
--  python -m django --version
+2.create a virtual env by running commond below
+-   virtualenv -p /usr/bin/python3.8 venv
 
--- create a project 
+3.activate the virtualenv
+-  source venv/bin/activate
 
-   -django-admin startproject salary_box_task
+4.once activated install requirements by using commond
+-  pip install -r requirements/local.txt
 
--- install 
-   - pip install djangorestframework
+5.then migrate
+- python manage.py migrate
+NOTE- (if you have used the same db(wich exist in current directory) you will see - No migrations to apply.)
 
+6.Runserver( on port 9000)
+-  python manage.py runserver 0.0.0.0:9000
 
--virtualenv -p /usr/bin/python3.8 venv
+7. on successfull run, goto browser type url
+- http://0.0.0.0:9000/admin/
 
-then source venv/bin/activate
-
-then
-
-pip install -r requirement/local.txt
-
-
-python mange.py migrate 
-
-python manage.py runserver
-
-
- python manage.py runserver 0.0.0.0:9000
-
- check -
- http://0.0.0.0:9000/admin
-
-create superuser to login 
-python manage.py createsuperuser
+8. please create superuser
+- python manage.py createsuperuser (provide username, password etc on prompt)
 
 
-call apis
+###################################
+ setup postman collection
+################################
+1. import `salary-box.postman_collection.json`(which is exist in root directory of project) file into postman collections
 
-GET:http://0.0.0.0:9000/coordinates/
+2. first generate the token using `Generate token `api- POST http://0.0.0.0:9000/api-token-auth ( already added in collection)
+  - in request body use the generated username and password
+  - in response you will get the token
+  - use this token(as `bearer token`) to call get/post method in other apis
 
+3. `GET coordinates` calling - GET http://0.0.0.0:9000/coordinates
+  - will give response to all generate coordinates of the user
 
+4.`Add coordinates` by calling - POST http://0.0.0.0:9000/coordinates/
+   - will store only one coordinate ( sample request body is available in collection)
 
-POST:http://0.0.0.0:9000/coordinates/
+5.`Bulk upload coordinate' using - POST http://0.0.0.0:9000/coordinates/bulk-upload
+  - Need to use form with key as `file` and select a csv file to upload
 
-{
-    "x_coordinate":16,
-    "y_coordinate":14
-}
-
-
-make sure csv file must have these columns header
-x_coordinate,y_coordinate
-
-POST : http://0.0.0.0:9000/coordinates/bulk-upload
-
-form has key file: and upload file 
+ NOTE-
+ 1.csv file must have two columns  - 1.x_coordinate 2. y_coordinate as header
+ 2.sample csv file is available in root directory of project named as - `sample_csv_file_for_bulk_upload.csv`
