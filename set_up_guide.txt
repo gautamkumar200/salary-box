@@ -1,0 +1,62 @@
+create a django project 
+
+-- install python 3.8
+
+-- pip install django
+-- if above not work then run
+   -sudo apt install python3-django
+
+check version
+-  python -m django --version
+
+-- create a project 
+
+   -django-admin startproject salary_box_task
+
+-- install 
+   - pip install djangorestframework
+
+
+-virtualenv -p /usr/bin/python3.8 venv
+
+then source venv/bin/activate
+
+then
+
+pip install -r requirement/local.txt
+
+
+python mange.py migrate 
+
+python manage.py runserver
+
+
+ python manage.py runserver 0.0.0.0:9000
+
+ check -
+ http://0.0.0.0:9000/admin
+
+create superuser to login 
+python manage.py createsuperuser
+
+
+call apis
+
+GET:http://0.0.0.0:9000/coordinates/
+
+
+
+POST:http://0.0.0.0:9000/coordinates/
+
+{
+    "x_coordinate":16,
+    "y_coordinate":14
+}
+
+
+make sure csv file must have these columns header
+x_coordinate,y_coordinate
+
+POST : http://0.0.0.0:9000/coordinates/bulk-upload
+
+form has key file: and upload file 

@@ -1,0 +1,180 @@
+{
+	"info": {
+		"_postman_id": "4026de02-d198-4b24-961f-36090a481f83",
+		"name": "salary-box",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "15091898"
+	},
+	"item": [
+		{
+			"name": "Generate token",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "3326446bacb1c1931a78095688a9ea9a18902cb4",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"username\": \"gautam\",\n    \"password\" :\"gautam\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://0.0.0.0:9000/api-token-auth",
+					"protocol": "http",
+					"host": [
+						"0",
+						"0",
+						"0",
+						"0"
+					],
+					"port": "9000",
+					"path": [
+						"api-token-auth"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET coordinates",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "fdb4e7f9215c1bc5dcf8d9443ce54733f5bc75b5",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "\n{\n    \"x_coordinate\":16,\n    \"y_coordinate\":14\n}\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://0.0.0.0:9000/coordinates",
+					"protocol": "http",
+					"host": [
+						"0",
+						"0",
+						"0",
+						"0"
+					],
+					"port": "9000",
+					"path": [
+						"coordinates"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add coordinates",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "fdb4e7f9215c1bc5dcf8d9443ce54733f5bc75b5",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"x_coordinate\":17,\n    \"y_coordinate\":14\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://0.0.0.0:9000/coordinates/",
+					"protocol": "http",
+					"host": [
+						"0",
+						"0",
+						"0",
+						"0"
+					],
+					"port": "9000",
+					"path": [
+						"coordinates",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Bulk coordinate upload",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "fdb4e7f9215c1bc5dcf8d9443ce54733f5bc75b5",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "file",
+							"type": "file",
+							"src": []
+						}
+					]
+				},
+				"url": {
+					"raw": "http://0.0.0.0:9000/coordinates/bulk-upload",
+					"protocol": "http",
+					"host": [
+						"0",
+						"0",
+						"0",
+						"0"
+					],
+					"port": "9000",
+					"path": [
+						"coordinates",
+						"bulk-upload"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

@@ -1,0 +1,10 @@
+
+# Django
+# ------------------------------------------------------------------------------
+django==3.2.11  # pyup: < 4.0  # https://www.djangoproject.com/
+djangorestframework==3.13.1
+django-allauth==0.50.0  # https://github.com/pennersr/django-allauth
+django-import-export==2.8.0
+pandas==1.4.4
+
+
