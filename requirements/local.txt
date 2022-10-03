@@ -6,5 +6,7 @@ djangorestframework==3.13.1
 django-allauth==0.50.0  # https://github.com/pennersr/django-allauth
 django-import-export==2.8.0
 pandas==1.4.4
-
-
+django-redis==5.2.0
+celery==5.2.3  # pyup: < 6.0  # https://github.com/celery/celery
+django-celery-beat==2.2.1  # https://github.com/celery/django-celery-beat
+django-celery-results==2.4.0

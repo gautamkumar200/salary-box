@@ -1,4 +1,7 @@
 import pandas as pd
+from django.core.cache import cache
+from django.utils.decorators import method_decorator
+from django.views.decorators.cache import cache_page
 from rest_framework import status
 from rest_framework.decorators import (
     api_view,
@@ -20,10 +23,17 @@ from salary_box_task.utils import BearerAuthentication
 @api_view(["GET", "POST"])
 @authentication_classes([BearerAuthentication])
 @permission_classes([IsAuthenticated])
+@cache_page(timeout=60000, key_prefix="coordinates")
 def coordinates_view(request):
     if request.method == "GET":
         if True:
-            coordinates = Coordinates.objects.filter(user_id=request.user)
+            # coordinates = cache.get("coordinates")
+            # if not coordinates:
+                coordinates = Coordinates.objects.filter(user_id=request.user)
+            #     cache.set("coordinates", coordinates, timeout=None)
+            #     print("-------------database------------")
+            # # else:
+            #     print("-------------cache------------")
         else:
             #@TODO for group leader show the all coordinates
             coordinates = Coordinates.objects.filter()
