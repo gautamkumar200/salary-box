@@ -148,3 +148,5 @@ CACHES = {
         "KEY_PREFIX": "salary_box"
     }
 }
+
+CELERY_BROKER_URL = 'amqp://localhost'

@@ -14,6 +14,7 @@ from coordinates.models import Coordinates
 from coordinates.serializers import CoordinatesSerializer, FileUploadSerializer
 from rest_framework.permissions import IsAuthenticated
 
+from coordinates.task import call_celery_task
 from salary_box_task.utils import BearerAuthentication
 
 
@@ -23,13 +24,14 @@ from salary_box_task.utils import BearerAuthentication
 @api_view(["GET", "POST"])
 @authentication_classes([BearerAuthentication])
 @permission_classes([IsAuthenticated])
-@cache_page(timeout=60000, key_prefix="coordinates")
+#@cache_page(timeout=60000, key_prefix="coordinates")
 def coordinates_view(request):
     if request.method == "GET":
         if True:
             # coordinates = cache.get("coordinates")
             # if not coordinates:
                 coordinates = Coordinates.objects.filter(user_id=request.user)
+                call_celery_task.delay()
             #     cache.set("coordinates", coordinates, timeout=None)
             #     print("-------------database------------")
             # # else:
